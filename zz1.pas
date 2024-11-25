@@ -1,4 +1,4 @@
-﻿var 
+var 
   time:array of integer;
   n,student1,student3,student5:integer;
   f1,f2:text;
@@ -34,9 +34,27 @@ begin
     read(f1,time[i]);
   close(f1);
   student5 := sumtimes(time,n);
-  reverse(time); //заменить 
+for var i := 0 to (n div 2) - 1 do 
+begin
+  var temp := time[i];
+  time[i] := time[n - i - 1];
+  time[n - i - 1] := temp;
+end;
+
+
   student3 := sumtimes(time,n);
-  Sort(time);  //заменить (пузырек)
+for var i := 0 to n -2 do 
+begin
+  for var j := 0 to n-2- i do
+  begin
+    if time[j] > time[j + 1] then
+    begin
+      var temp := time[j];
+      time[j] := time[j+1];
+      time[j+1] := temp;
+    end;
+  end;
+  end;
   student1 := sumtimes(time,n);
   
   assign(f2,'output.txt');
